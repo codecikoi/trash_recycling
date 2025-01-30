@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trash_recycling/presentation/pages/signin_page.dart';
+import 'package:trash_recycling/presentation/pages/login.dart';
 import 'package:trash_recycling/presentation/pages/register.dart';
 import 'package:trash_recycling/utilities/widgets/helpers/app_bar.dart';
 import 'package:trash_recycling/utilities/widgets/helpers/app_button.dart';
@@ -46,28 +46,16 @@ class StartPage extends StatelessWidget {
                     Expanded(
                       flex: 2,
                       child: BasicAppButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => RegisterPage(),
-                            ),
-                          );
-                        },
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed('/register'),
                         title: 'Register',
                       ),
                     ),
                     const SizedBox(width: 30),
                     Expanded(
                       child: TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (BuildContext context) => SignInPage(),
-                            ),
-                          );
-                        },
+                        onPressed: () =>
+                            Navigator.of(context).pushNamed('/signIn'),
                         child: const Text(
                           'SigIn',
                           style: TextStyle(
