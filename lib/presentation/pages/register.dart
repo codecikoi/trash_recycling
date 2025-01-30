@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:trash_recycling/presentation/pages/camera_page.dart';
@@ -13,6 +14,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _RegisterPageState extends State<RegisterPage> {
+  final _auth = FirebaseAuth.instance;
+
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController _fullNameController = TextEditingController();
@@ -21,6 +24,39 @@ class _RegisterPageState extends State<RegisterPage> {
 
   final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
+
+  Future<void> signUp() async {
+    try {
+      final UserCredential userCredential =
+          await _auth.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      print('User registered: ${userCredential.user?.email}');
+
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => CameraPage(),
+        ),
+      );
+    } catch (e) {
+      print('error $e');
+    }
+  }
+
+  Future<void> signIn() async {
+    try {
+      final UserCredential userCredential =
+          await _auth.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+      print('signed in: ${userCredential.user?.email}');
+    } catch (e) {
+      print('error $e');
+    }
+  }
 
   String? validateEmailInput(String value) {
     if (!value.contains('@') || !value.contains('.')) {
@@ -52,17 +88,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   title: 'Create Account',
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Valid input'),
-                        ),
-                      );
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => CameraPage(),
-                        ),
-                      );
+                      signUp();
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
                         const SnackBar(

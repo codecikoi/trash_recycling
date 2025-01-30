@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "206194665091",
+    "project_id": "trash-recycling-korea",
+    "storage_bucket": "trash-recycling-korea.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:206194665091:android:abf7cb1183e251fd671db6",
+        "android_client_info": {
+          "package_name": "com.example.trash_recycling"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSkLEyPT8iYUYTCGqYehZavQHQTsteQc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
